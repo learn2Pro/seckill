@@ -28,6 +28,7 @@ public class RedisDao {
 	 */
 	public Seckill getSeckill(long seckillId){
         //redis操作逻辑
+
         try {
             Jedis jedis = jedisPool.getResource();
             try {
