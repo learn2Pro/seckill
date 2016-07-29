@@ -15,12 +15,15 @@
         <!--<property name="token" value="1417623612434"/>-->
         <!--<property name="configId" value="/redis/cluster/17"/>-->
     <!--</bean>-->
+
+    <bean id="configClient" class="com.jd.jim.cli.config.client.ConfigLongPollingClientFactoryBean">
+        <property name="serviceEndpoint" value="http://cfs.jim.jd.local"></property>
+    </bean>
     <bean id="jimClient" class="com.jd.jim.cli.ReloadableJimClientFactoryBean">
-        <property name="jimUrl" value="jim://1803528671997086613/2" />
+        <property name="configClient" ref="configClient"></property>
+        <property name="jimUrl" value="jim://2870414099454224775/3" />
     </bean>
     <bean id="jedisCacheUtils" class="org.seckill.util.JedisCacheUtils">
-        <!--<constructor-arg index="0" value="YZ"/>-->
-        <!--<constructor-arg index="1" ref="redisClientShop"/>-->
         <property name="flag" value="YZ"></property>
         <property name="cluster" ref="jimClient"></property>
     </bean>
@@ -34,16 +37,15 @@
         <!--<property name="token" value="1417623612434"/>-->
         <!--<property name="configId" value="/redis/cluster/17"/>-->
     <!--</bean>-->
-    <bean id="jimClient1" class="com.jd.jim.cli.ReloadableJimClientFactoryBean">
-        <property name="jimUrl" value="jim://2809907038999011671/4" />
+    <bean id="backJimClient" class="com.jd.jim.cli.ReloadableJimClientFactoryBean">
+        <property name="configClient" ref="configClient"></property>
+        <property name="jimUrl" value="jim://2809907022807591111/5" />
     </bean>
-
 
     <bean id="backupJedisCacheUtils1" class="org.seckill.util.JedisCacheUtils">
         <property name="flag" value="HC"></property>
-        <property name="cluster" ref="jimClient1" />
+        <property name="cluster" ref="backJimClient" />
     </bean>
-
 
 
     <bean id="tKillCacheUtils" class="org.seckill.util.TKillCacheUtils">

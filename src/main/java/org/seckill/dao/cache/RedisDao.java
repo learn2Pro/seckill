@@ -28,6 +28,20 @@ public class RedisDao {
 		jedisPool = new JedisPool(config,ip,port);
 	}
 
+
+
+//    public static void main(String[] args){
+//        RedisDao redisDao=new RedisDao("127.0.0.1",6379);
+//        try {
+//            Jedis jedis = redisDao.getJedisPool().getResource();
+//            jedis.set("123","abc");
+//            System.out.print(jedis.get("123")+".....\n");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//    }
+
 	public JedisPool getJedisPool() {
 		return this.jedisPool;
 	}

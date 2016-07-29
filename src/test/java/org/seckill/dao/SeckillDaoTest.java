@@ -10,7 +10,10 @@ import javax.annotation.Resource;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.seckill.common.KillCacheTemplate;
+import org.seckill.constant.CacheConstant;
 import org.seckill.entity.Seckill;
+import org.seckill.util.SpringContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,7 +25,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 //spring配置文件位置
-@ContextConfiguration({"classpath:spring/spring-dao.xml"})
+@ContextConfiguration({"classpath:spring-config.xml"})
 public class SeckillDaoTest {
 
 	//注入Dao实现类依赖
@@ -39,6 +42,13 @@ public class SeckillDaoTest {
 		int updateCount = seckillDao.reduceNumber(1000L, killTime);
 		System.out.println(updateCount);
 	}
+
+//    @Test
+//    public void testJimdb(){
+//        SpringContextUtils.init();
+//        KillCacheTemplate.set("123", CacheConstant.Expiration.ONE_MINUTE,"abc");
+//        System.out.println(KillCacheTemplate.get("123",String.class));
+//    }
 
 	@Test
 	public void testQueryById() {

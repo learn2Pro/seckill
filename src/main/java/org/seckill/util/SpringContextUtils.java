@@ -1,5 +1,6 @@
 package org.seckill.util;
 
+import com.jd.jim.cli.Cluster;
 import org.seckill.common.KillCacheTemplate;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -24,9 +25,9 @@ public class SpringContextUtils implements ApplicationContextAware {
      */
     public void init() {
         // 注入缓存模板工具中的缓存工具实例
+        //  Cluster cluster=(Cluster)applicationContext.getBean("jimClient");
         TKillCacheUtils cacheUtils = (TKillCacheUtils) applicationContext.getBean("tKillCacheUtils");
         KillCacheTemplate.settKillCacheUtils(cacheUtils);
-
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
